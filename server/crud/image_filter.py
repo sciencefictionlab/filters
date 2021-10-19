@@ -27,7 +27,7 @@ def save_upload_file(file, path):
         shutil.copyfileobj(file.file, buffer)
 
 
-async def upload_image_and_filter(image):
+async def make_background_gray(image):
     temp_path = config.UPLOAD_PATH
     filename = uuid.uuid4().hex
     extension = image.filename.split('.')[-1]

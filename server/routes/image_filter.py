@@ -1,19 +1,20 @@
-from pathlib import Path
+from fastapi import APIRouter, UploadFile, File
 
-from fastapi import APIRouter, Body, UploadFile, File
-from starlette.responses import FileResponse
-
-from server.crud.image_filter import upload_image_and_filter
+from server.crud.image_filter import make_background_gray
 from server.singletons import AppConfig
-import shutil
+from fastapi import APIRouter, UploadFile, File
+
+from server.crud.image_filter import make_background_gray
+from server.singletons import AppConfig
+
 config = AppConfig.get_config()
 
 router = APIRouter()
 
 
 @router.post('/upload', response_description="upload file.")
-async def _upload_image_and_filter(image: UploadFile = File(...)):
-    return await upload_image_and_filter(image)
+async def _make_background_gray(image: UploadFile = File(...)):
+    return await make_background_gray(image)
 
 
 
